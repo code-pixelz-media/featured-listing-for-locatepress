@@ -102,6 +102,8 @@ class Featured_Listing_For_Locatepress_Public {
 
 
 	public function featured_listing_for_locatepress_order($query){
+
+	
 		$query['meta_query'] = array(
 			
 			    array(
@@ -109,6 +111,10 @@ class Featured_Listing_For_Locatepress_Public {
 			        'value'   => array('1','0'),
 			        'compare' => 'IN'
 			    ),
+
+
+			   
+
 		);
 
 		return $query;

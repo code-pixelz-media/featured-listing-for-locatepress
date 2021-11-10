@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Featured_listing_locatepress_meta {
 
@@ -6,8 +6,8 @@ class Featured_listing_locatepress_meta {
 
 	public function featured_listing_for_locatepress_init_metabox() {
 
-		add_action( 'add_meta_boxes',        array( $this, 'featured_listing_for_locatepress_addmeta' )         );
-		add_action( 'save_post',             array( $this, 'featured_listing_for_locatepress_save_metabox' ), 10, 2 );
+		add_action( 'add_meta_boxes', array( $this, 'featured_listing_for_locatepress_addmeta' ) );
+		add_action( 'save_post', array( $this, 'featured_listing_for_locatepress_save_metabox' ), 10, 2 );
 
 	}
 
@@ -27,17 +27,22 @@ class Featured_listing_locatepress_meta {
 	public function featured_listing_for_locatepress_meta( $post ) {
 
 		wp_nonce_field( 'nonce_action', 'nonce' );
-		
+
 		$lp_featured_listing = get_post_meta( $post->ID, 'featured-listing-checkbox', true );
-		
+
 		echo '<table class="form-table">';
 		echo '	<tr>';
 		echo '		<td>';
 		?>
-        <label for="featured-checkbox">
-            <input type="checkbox" name="featured-listing-checkbox" id="featured-listing-checkbox" value="1" <?php if ( isset ( $lp_featured_listing ) ) checked( $lp_featured_listing, '1' ); ?> /><?php _e('Make This Listing Featured','locate-press') ?></label>
+		<label for="featured-checkbox">
+			<input type="checkbox" name="featured-listing-checkbox" id="featured-listing-checkbox" value="1" 
+			<?php
+			if ( isset( $lp_featured_listing ) ) {
+				checked( $lp_featured_listing, '1' );}
+			?>
+			 /><?php _e( 'Make This Listing Featured', 'locate-press' ); ?></label>
 
-  		<?php
+		<?php
 		echo '		</td>';
 		echo '	</tr>';
 
@@ -48,40 +53,43 @@ class Featured_listing_locatepress_meta {
 	public function featured_listing_for_locatepress_save_metabox( $post_id, $post ) {
 
 		// Add nonce for security and authentication.
-		$nonce_name   = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
+		$nonce_name   = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
 		$nonce_action = 'nonce_action';
 
 		// Check if a nonce is set.
-		if ( ! isset( $nonce_name ) )
+		if ( ! isset( $nonce_name ) ) {
 			return;
+		}
 
 		// Check if a nonce is valid.
-		if ( ! wp_verify_nonce( $nonce_name, $nonce_action ) )
+		if ( ! wp_verify_nonce( $nonce_name, $nonce_action ) ) {
 			return;
+		}
 
 		// Check if the user has permissions to save data.
-		if ( ! current_user_can( 'edit_post', $post_id ) )
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
+		}
 
 		// Check if it's not an autosave.
-		if ( wp_is_post_autosave( $post_id ) )
+		if ( wp_is_post_autosave( $post_id ) ) {
 			return;
+		}
 
 		// Check if it's not a revision.
-		if ( wp_is_post_revision( $post_id ) )
+		if ( wp_is_post_revision( $post_id ) ) {
 			return;
+		}
 
 		// Sanitize user input.
-		
 
-		
-
-		if( isset( $_POST[ 'featured-listing-checkbox' ] ) ) {
-		    update_post_meta( $post_id, 'featured-listing-checkbox', '1' );
+		$featured_listing_checkbox = sanitize_text_field( $_POST['featured-listing-checkbox'] );
+		if ( isset( $featured_listing_checkbox ) ) {
+			update_post_meta( $post_id, 'featured-listing-checkbox', '1' );
 		} else {
-		    update_post_meta( $post_id, 'featured-listing-checkbox', '0' );
+			update_post_meta( $post_id, 'featured-listing-checkbox', '0' );
 		}
 
-		}
+	}
 
 }

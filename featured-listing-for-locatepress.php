@@ -14,10 +14,10 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Featured Listing For Locatepress
- * Plugin URI:        http://wplocatepress.com/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Plugin URI:        http://wplocatepress.com/addons/featured-listing-for-locatepress
+ * Description:       Featured Listing for Locatepress is an add-on for Locatepress which allows your listing to be featured.
  * Version:           1.0.0
- * Author:            Codepixelzmedia
+ * Author:            wplocatepress.com
  * Author URI:        http://wplocatepress.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -83,30 +83,30 @@ run_featured_listing_for_locatepress();
 
 
 
-function check_locatepress_plugin(){
-    if(!in_array('locatepress/locatepress.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
+function check_locatepress_plugin() {
+	if ( ! in_array( 'locatepress/locatepress.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
-        add_action('admin_notices', 'featured_listing_for_locatepress_deactivate_notice');
-        //Deactivate our plugin
-        deactivate_plugins(plugin_basename(__FILE__));
+		add_action( 'admin_notices', 'featured_listing_for_locatepress_deactivate_notice' );
+		//Deactivate our plugin
+		deactivate_plugins( plugin_basename( __FILE__ ) );
 
-        if (isset($_GET['activate'])) {
-            unset($_GET['activate']);
-        }
-    }
-    
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
+	}
+
 }
 
-add_action('admin_init', 'check_locatepress_plugin');
+add_action( 'admin_init', 'check_locatepress_plugin' );
 
 /**
  * Display an error message when parent plugin is missing
  */
-function featured_listing_for_locatepress_deactivate_notice(){
-    ob_start(); ?>
-        <div class="error">
-            <p><strong><?php _e('Locatepress Plugin Is Required','featured-listing-for-locatepress'); ?></strong></p>
-        </div>
-        <?php
-    echo ob_get_clean();
+function featured_listing_for_locatepress_deactivate_notice() {
+	ob_start(); ?>
+		<div class="error">
+			<p><strong><?php _e( 'Locatepress Plugin Is Required', 'featured-listing-for-locatepress' ); ?></strong></p>
+		</div>
+		<?php
+		echo ob_get_clean();
 }
