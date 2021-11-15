@@ -128,7 +128,7 @@ class Featured_Listing_For_Locatepress_Admin {
 	 * @param Array $columns - Current columns on the list post
 	 */
 	public function featured_listing_for_locatepress_cols($columns) {
-	    $columns['featured-listing'] = __( 'Featured', 'locate-press' );
+	    $columns['featured-listing'] = __( 'Featured', 'featured-listing-for-locatepress' );
 	    return $columns;
 	}
 

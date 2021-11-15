@@ -40,7 +40,7 @@ class Featured_listing_locatepress_meta {
 			if ( isset( $lp_featured_listing ) ) {
 				checked( $lp_featured_listing, '1' );}
 			?>
-			 /><?php _e( 'Make This Listing Featured', 'locate-press' ); ?></label>
+			 /><?php _e( 'Make This Listing Featured', 'featured-listing-for-locatepress' ); ?></label>
 
 		<?php
 		echo '		</td>';
