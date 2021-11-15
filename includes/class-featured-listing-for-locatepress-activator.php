@@ -22,7 +22,7 @@
  */
 class Featured_Listing_For_Locatepress_Activator {
 
-	
+
 	/**
 	 * Short Description. (use period)
 	 *
@@ -32,31 +32,28 @@ class Featured_Listing_For_Locatepress_Activator {
 	 */
 	public static function activate() {
 
-		 add_option('Activated_Plugin', 'featured-listing-for-locatepress');
-		 add_action('init', array('Featured_Listing_For_Locatepress_Activator','load_featured_listing_for_locatepress'));
-		
+		add_option( 'Activated_Plugin', 'featured-listing-for-locatepress' );
+		add_action( 'init', array( 'Featured_Listing_For_Locatepress_Activator', 'load_featured_listing_for_locatepress' ) );
+
 	}
 
 
-	public static function load_featured_listing_for_locatepress(){
-		if(!in_array('locatepress/locatepress.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
-		        
+	public static function load_featured_listing_for_locatepress() {
+		if ( ! in_array( 'locatepress/locatepress.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
-		     
-		            add_action('admin_notices',array('Featured_Listing_For_Locatepress_Activator','featured_listing_for_locatepress_notices'));
+					add_action( 'admin_notices', array( 'Featured_Listing_For_Locatepress_Activator', 'featured_listing_for_locatepress_notices' ) );
 
-		            //Deactivate our plugin
-		            deactivate_plugins(plugin_basename(__FILE__));
+					//Deactivate our plugin
+					deactivate_plugins( plugin_basename( __FILE__ ) );
 
-		            if (isset($_GET['activate'])) {
-		                unset($_GET['activate']);
-		            }
-		       
+			if ( isset( $_GET['activate'] ) ) {
+				unset( $_GET['activate'] );
+			}
 		}
 	}
 
 
-	public function featured_listing_for_locatepress_notices(){
+	public function featured_listing_for_locatepress_notices() {
 		ob_start(); ?>
 				<div class="error">
 					<p><strong>Error</strong></p>
@@ -64,7 +61,7 @@ class Featured_Listing_For_Locatepress_Activator {
 		<?php
 		echo ob_get_clean();
 	}
-	
+
 
 	// public function features_listing_for_locatepress_meta(){
 

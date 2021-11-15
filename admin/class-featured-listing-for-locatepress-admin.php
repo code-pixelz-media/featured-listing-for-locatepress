@@ -52,7 +52,7 @@ class Featured_Listing_For_Locatepress_Admin {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -105,19 +105,19 @@ class Featured_Listing_For_Locatepress_Admin {
 
 
 
-	public function locatepress_is_activated(){
+	public function locatepress_is_activated() {
 		if ( is_plugin_active( 'locatepress/locatepress.php' ) ) {
-    		
-    		return true;
-		}else{
+
+			return true;
+		} else {
 
 			return false;
-		} 
+		}
 	}
 
-	public function features_listing_for_locatepress_meta(){
+	public function features_listing_for_locatepress_meta() {
 
-		if($this->locatepress_is_activated()){
+		if ( $this->locatepress_is_activated() ) {
 
 		}
 	}
@@ -127,29 +127,32 @@ class Featured_Listing_For_Locatepress_Admin {
 	 *
 	 * @param Array $columns - Current columns on the list post
 	 */
-	public function featured_listing_for_locatepress_cols($columns) {
-	    $columns['featured-listing'] = __( 'Featured', 'featured-listing-for-locatepress' );
-	    return $columns;
+	public function featured_listing_for_locatepress_cols( $columns ) {
+		$columns['featured-listing'] = __( 'Featured', 'featured-listing-for-locatepress' );
+		return $columns;
 	}
 
 
-	public function featured_listing_for_locatepress_cols_data($column, $post_id){
+	public function featured_listing_for_locatepress_cols_data( $column, $post_id ) {
 
-			switch ($column) {
-				case 'featured-listing':
-					$col_meta= get_post_meta( $post_id, 'featured-listing-checkbox', true );
-					echo $col_meta;
-					
+		switch ( $column ) {
+			case 'featured-listing':
+				$col_meta = get_post_meta( $post_id, 'featured-listing-checkbox', true );
+				if ( '1' == esc_html( $col_meta ) ) :
+					echo '<i class="fas fa-check"></i>';
+				else :
+					echo '<i class="fas fa-times"></i>';
+				endif;
 				break;
 
-			}
+		}
 	}
 
-	public function featured_listing_for_locatepress_notices(){
+	public function featured_listing_for_locatepress_notices() {
 		ob_start(); ?>
-				<div class="error">
-					<p><strong>Error</strong></p>
-				</div>
+			<div class="error">
+				<p><strong><?php _e( 'Error', 'featured-listing-for-locatepress' ); ?></strong></p>
+			</div>
 		<?php
 		echo ob_get_clean();
 	}

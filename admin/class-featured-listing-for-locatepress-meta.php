@@ -15,7 +15,7 @@ class Featured_listing_locatepress_meta {
 
 		add_meta_box(
 			'featured-listing',
-			__( 'Featured Listing', 'locatepress' ),
+			__( 'Featured Listing', 'featured-listing-for-locatepress' ),
 			array( $this, 'featured_listing_for_locatepress_meta' ),
 			'map_listing',
 			'side',
@@ -38,7 +38,7 @@ class Featured_listing_locatepress_meta {
 			<input type="checkbox" name="featured-listing-checkbox" id="featured-listing-checkbox" value="1" 
 			<?php
 			if ( isset( $lp_featured_listing ) ) {
-				checked( $lp_featured_listing, '1' );}
+				checked( esc_html( $lp_featured_listing ), '1' );}
 			?>
 			 /><?php _e( 'Make This Listing Featured', 'featured-listing-for-locatepress' ); ?></label>
 
