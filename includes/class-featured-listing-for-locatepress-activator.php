@@ -55,19 +55,10 @@ class Featured_Listing_For_Locatepress_Activator {
 
 	public function featured_listing_for_locatepress_notices() {
 		ob_start(); ?>
-				<div class="error">
-					<p><strong>Error</strong></p>
-				</div>
+		<div class="error">
+			<p><strong><?php _e( 'Error', 'featured-listing-for-locatepress' ); ?></strong></p>
+		</div>
 		<?php
 		echo ob_get_clean();
 	}
-
-
-	// public function features_listing_for_locatepress_meta(){
-
-	// 	if($this->locatepress_is_activated()){
-
-	// 	}
-	// }
-
 }
