@@ -4,7 +4,7 @@ Description: Featured Listing for Locatepress allows your listing to be featured
 Version: 1.0.0
 Author: wplocatepress.com
 Author URI: http://wplocatepress.com/locatepress/
-Contributors: locatepress, utsavsinghrathour, aleenak19, rowhit07, sushil51, ramanb
+Contributors: locatepress, utsavsinghrathour, aleenak19, rowhit07, sushil51, ramanb, anilpanthi21
 Donate Link: http://wplocatepress.com/
 Requires at least: 4.9
 Requires PHP: 5.6.20

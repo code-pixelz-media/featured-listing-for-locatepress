@@ -7,7 +7,7 @@ class Featured_listing_locatepress_meta {
 	public function featured_listing_for_locatepress_init_metabox() {
 
 		add_action( 'add_meta_boxes', array( $this, 'featured_listing_for_locatepress_addmeta' ) );
-		add_action( 'save_post', array( $this, 'featured_listing_for_locatepress_save_metabox' ), 10, 2 );
+		add_action( 'save_post', array( $this, 'featured_listing_for_locatepress_save_metabox' ), 99, 2 );
 
 	}
 
@@ -82,12 +82,9 @@ class Featured_listing_locatepress_meta {
 		}
 
 		// Sanitize user input.
-
-		$featured_listing_checkbox = sanitize_text_field( $_POST['featured-listing-checkbox'] );
-		if ( isset( $featured_listing_checkbox ) ) {
+		if ( isset( $_POST['featured-listing-checkbox'] ) ) {
+			$featured_listing_checkbox = sanitize_text_field( $_POST['featured-listing-checkbox'] );
 			update_post_meta( $post_id, 'featured-listing-checkbox', '1' );
-		} else {
-			update_post_meta( $post_id, 'featured-listing-checkbox', '0' );
 		}
 
 	}

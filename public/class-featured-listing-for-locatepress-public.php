@@ -50,7 +50,7 @@ class Featured_Listing_For_Locatepress_Public {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -101,21 +101,23 @@ class Featured_Listing_For_Locatepress_Public {
 	}
 
 
-	public function featured_listing_for_locatepress_order($query){
+	public function featured_listing_for_locatepress_order( $query ) {
 
-	
-		$query['meta_query'] = array(
-			
-			    array(
-			        'key'     => 'featured-listing-checkbox',
-			        'value'   => array('1','0'),
-			        'compare' => 'IN'
-			    ),
+		// $query['meta_query'] = array(
+				
+		// 	    array(
+		// 	        'key'     => 'featured-listing-checkbox',
+		// 	        'value'   => array('1','0'),
+		// 	        'compare' => 'IN'
+		// 	    ),
 
-
-			   
-
-		);
+		// );
+		// echo '<pre>';
+		// print_r($query);
+		// die;
+		$query['meta_key'] = 'featured-listing-checkbox';
+		$query['orderby']  = 'meta_value_num';
+		$query['order']    = 'DESC';
 
 		return $query;
 	}
